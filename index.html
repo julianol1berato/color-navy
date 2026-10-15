@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Areia · Navy · Ardósia — paleta de cores</title>
+<meta name="description" content="A paleta de cores dos nossos projetos: superfícies em areia, texto em ardósia, marca em navy. Tema claro e escuro, validada para daltonismo e contraste.">
+<script>
+  // o tema antes do primeiro desenho: a escolha salva, senão o do sistema
+  (function () {
+    try {
+      var t = localStorage.getItem('anp-tema');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--cor-pagina); color: var(--cor-tinta); font-family: var(--fonte); }
+  body { font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  a { color: var(--cor-link); }
+  :focus-visible { outline: 2px solid var(--cor-foco); outline-offset: 2px; border-radius: 4px; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px 64px; }
+
+  /* barra do topo */
+  /* a faixa da marca: navy, texto areia, controles navy 800 */
+  .top { position: sticky; top: 0; z-index: 5; background: var(--cor-marca-fundo); color: var(--cor-sobre-marca); }
+  .top .wrap { display: flex; align-items: center; gap: 14px; padding-top: 14px; padding-bottom: 14px; }
+  .logo { display: flex; gap: 3px; }
+  .logo i { width: 10px; height: 22px; border-radius: 3px; display: block; }
+  .logo i:nth-child(1) { background: var(--areia-300); }
+  .logo i:nth-child(2) { background: var(--navy-400); }
+  .logo i:nth-child(3) { background: var(--ardosia-500); }
+  .top b { font-size: 15px; letter-spacing: .2px; }
+  .top .v { color: var(--cor-sobre-marca-2); font-size: 12px; }
+  .top nav { margin-left: auto; display: flex; gap: 18px; font-size: 13px; }
+  .top nav a { color: var(--cor-sobre-marca-2); text-decoration: none; }
+  .top nav a:hover { color: var(--cor-sobre-marca); }
+  .top :focus-visible { outline-color: var(--cor-sobre-marca-2); }
+  .seg { display: inline-flex; background: var(--cor-marca-controle); border: 1px solid var(--cor-marca-borda); border-radius: 999px; padding: 3px; }
+  .seg button { font: inherit; font-size: 12.5px; border: 0; background: transparent; color: var(--cor-sobre-marca-2); padding: 5px 12px;
+    border-radius: 999px; cursor: pointer; }
+  .seg button:hover { color: var(--cor-sobre-marca); }
+  .seg button[aria-pressed="true"] { background: var(--cor-sobre-marca); color: var(--cor-marca-fundo); font-weight: 600; }
+
+  /* hero */
+  .hero { padding: 56px 0 36px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+  .hero h1 { font-size: 44px; line-height: 1.08; letter-spacing: -.8px; margin: 0 0 14px; font-weight: 650; }
+  .hero h1 span { color: var(--cor-tinta-3); font-weight: 500; }
+  .hero p { font-size: 16px; color: var(--cor-tinta-2); margin: 0 0 10px; max-width: 520px; }
+  .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .trio .c { border-radius: 16px; height: 210px; padding: 16px; display: flex; flex-direction: column; justify-content: flex-end;
+    border: 1px solid var(--cor-borda); }
+  .trio .c b { font-size: 18px; }
+  .trio .c small { font-size: 12px; opacity: .85; }
+  .trio .areia { background: var(--areia-200); color: var(--areia-900); }
+  .trio .navy { background: var(--navy-900); color: var(--navy-50); }
+  .trio .ardosia { background: var(--ardosia-700); color: var(--ardosia-50); }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 4px 10px; border-radius: 999px;
+    background: var(--cor-superficie); border: 1px solid var(--cor-borda); color: var(--cor-tinta-2); }
+  .badge .ok { color: var(--status-bom-texto); font-weight: 700; }
+
+  section { margin-top: 44px; }
+  h2 { font-size: 22px; letter-spacing: -.3px; margin: 0 0 4px; }
+  .lead { color: var(--cor-tinta-2); margin: 0 0 18px; max-width: 760px; }
+  .card { background: var(--cor-superficie); border: 1px solid var(--cor-borda); border-radius: 16px; padding: 20px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  h3 { font-size: 14px; margin: 0 0 2px; }
+  .hint { color: var(--cor-tinta-3); font-size: 12.5px; margin: 0 0 14px; }
+  code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+
+  /* rampas */
+  .ramp { display: grid; grid-template-columns: 96px repeat(11, 1fr); gap: 4px; align-items: stretch; margin-bottom: 6px; }
+  .ramp .nm { font-weight: 600; align-self: center; }
+  .sw { border-radius: 8px; height: 64px; padding: 6px 7px; display: flex; flex-direction: column; justify-content: space-between;
+    font-size: 10.5px; line-height: 1.2; }
+  .sw b { font-size: 11px; font-weight: 600; }
+
+  /* tokens */
+  table { border-collapse: collapse; width: 100%; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--cor-borda); vertical-align: middle; }
+  th { font-size: 12px; color: var(--cor-tinta-3); font-weight: 600; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .chip { display: inline-block; width: 22px; height: 22px; border-radius: 6px; vertical-align: middle; border: 1px solid var(--cor-borda); }
+  .pass { color: var(--status-bom-texto); font-weight: 600; }
+  .fail { color: var(--status-critico-texto); font-weight: 600; }
+
+  /* séries */
+  .slots { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
+  .slot { border-radius: 12px; overflow: hidden; border: 1px solid var(--cor-borda); background: var(--cor-superficie); }
+  .slot .f { height: 70px; }
+  .slot .t { padding: 8px 10px; font-size: 12px; }
+  .slot .t b { display: block; font-size: 13px; }
+  .slot .t span { color: var(--cor-tinta-3); }
+  .strip { display: flex; height: 34px; border-radius: 10px; overflow: hidden; }
+  .strip i { flex: 1; }
+  .scale { display: flex; justify-content: space-between; font-size: 12px; color: var(--cor-tinta-3); margin-top: 6px; }
+
+  /* status */
+  .st { display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px 5px 7px; border-radius: 999px; font-size: 13px; font-weight: 550;
+    background: var(--cor-superficie-2); border: 1px solid var(--cor-borda); }
+  .st .ic { width: 18px; height: 18px; border-radius: 50%; display: inline-grid; place-items: center; color: #fff; font-size: 11px; font-weight: 800; }
+  .delta { font-variant-numeric: tabular-nums; font-weight: 600; }
+  .delta.bom { color: var(--status-bom-texto); }
+  .delta.critico { color: var(--status-critico-texto); }
+
+  /* painel exemplo */
+  .kpis { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .kpi { background: var(--cor-superficie); border: 1px solid var(--cor-borda); border-radius: 14px; padding: 16px; }
+  .kpi .l { font-size: 12.5px; color: var(--cor-tinta-2); }
+  .kpi .val { font-size: 28px; font-weight: 650; letter-spacing: -.5px; margin: 4px 0 2px; }
+  .kpi.destaque .val { font-size: 48px; letter-spacing: -1.2px; line-height: 1.05; white-space: nowrap; }
+  .kpi .s { font-size: 12.5px; color: var(--cor-tinta-3); }
+  .proj { display: grid; grid-template-columns: 150px 1fr 132px 178px; gap: 18px; align-items: center; padding: 12px 0;
+    border-bottom: 1px solid var(--cor-borda); }
+  .proj:last-child { border-bottom: 0; }
+  .proj .nm b { display: block; }
+  .proj .nm span { color: var(--cor-tinta-3); font-size: 12px; }
+  .proj .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .proj .num b { font-size: 16px; display: block; }
+  .proj .num span { font-size: 12px; color: var(--cor-tinta-3); }
+  .proj .cf { font-size: 12px; color: var(--cor-tinta-2); white-space: nowrap; }
+  .proj .cf .over { color: var(--status-alerta-texto); font-weight: 600; margin-top: 3px; }
+  /* a barra de bala em HTML: tudo em % de uma régua só, então qualquer largura serve */
+  .bala { position: relative; height: 26px; }
+  .bala i { position: absolute; display: block; }
+  .bala .trilha { left: 0; right: 0; top: 6px; bottom: 6px; border-radius: 4px; background: var(--cor-superficie-3); }
+  .bala .gasto { left: 0; top: 6px; bottom: 6px; background: var(--serie-1); border-radius: 4px 0 0 4px; }
+  .bala .prev { top: 6px; bottom: 6px; background: var(--dado-previsto); border-radius: 0 4px 4px 0; }
+  .bala .faixa { top: 12px; height: 2px; background: var(--dado-faixa); }
+  .bala .faixa::before, .bala .faixa::after { content: ""; position: absolute; top: -4px; width: 2px; height: 10px; background: var(--dado-faixa); border-radius: 1px; }
+  .bala .faixa::before { left: 0; } .bala .faixa::after { right: 0; }
+  .bala .orc { top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--cor-tinta); border-radius: 1px; }
+  .conf { display: inline-flex; gap: 3px; vertical-align: middle; margin-right: 6px; }
+  .conf i { width: 7px; height: 7px; border-radius: 50%; background: var(--cor-eixo); display: block; }
+  .conf i.on { background: var(--cor-tinta-2); }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--cor-tinta-2); margin: 4px 0 10px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 14px; height: 8px; border-radius: 2px; display: inline-block; }
+  svg text { font-family: var(--fonte); }
+
+  /* regras */
+  .rules { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .rules ul { margin: 0; padding-left: 18px; }
+  .rules li { margin: 6px 0; color: var(--cor-tinta-2); }
+  .rules li b { color: var(--cor-tinta); }
+  .do h3 { color: var(--status-bom-texto); }
+  .dont h3 { color: var(--status-critico-texto); }
+  footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--cor-borda); color: var(--cor-tinta-3); font-size: 12.5px; }
+
+  @media (max-width: 900px) {
+    .hero, .grid2, .grid3, .rules { grid-template-columns: 1fr; }
+    .kpis { grid-template-columns: 1fr 1fr; }
+    .slots { grid-template-columns: repeat(4, 1fr); }
+    .ramp { grid-template-columns: repeat(6, 1fr); }
+    .ramp .nm { grid-column: 1 / -1; }
+    .proj { grid-template-columns: 1fr auto; row-gap: 6px; }
+    .proj .bar { grid-column: 1 / -1; grid-row: 2; }
+    .proj .cf { grid-column: 1 / -1; grid-row: 3; }
+    .top nav { display: none; }
+  }
+  @media (max-width: 600px) {
+    .wrap { padding-left: 16px; padding-right: 16px; }
+    .top .wrap { flex-wrap: wrap; row-gap: 10px; }
+    .top b { white-space: nowrap; }
+    .top .seg { margin-left: 0; }
+    .hero h1 { font-size: 34px; }
+    .card { padding: 16px; }
+    .ramp { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .sw { min-width: 0; overflow: hidden; }
+    .slots { grid-template-columns: repeat(2, 1fr); }
+    .kpis { grid-template-columns: 1fr 1fr; }
+    .kpi.destaque { grid-column: 1 / -1; }
+    .kpi .val { font-size: 24px; white-space: nowrap; }
+    #tokens th:nth-child(4), #tokens td:nth-child(4), #tokens th:nth-child(3), #tokens td:nth-child(3) { display: none; }
+    #tokens td code { word-break: break-all; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <span class="logo" aria-hidden="true"><i></i><i></i><i></i></span>
+    <b>Areia · Navy · Ardósia</b><span class="v">v1.1.0</span>
+    <nav aria-label="Seções">
+      <a href="#rampas">Rampas</a><a href="#tema">Tema</a><a href="#dados">Dados</a><a href="#status">Status</a><a href="#painel">Painel</a><a href="#regras">Regras</a>
+    </nav>
+    <div class="seg" role="group" aria-label="Tema">
+      <button type="button" data-t="light">Claro</button><button type="button" data-t="dark">Escuro</button><button type="button" data-t="">Sistema</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <h1>Areia, navy e ardósia. <span>Uma paleta para decidir com números.</span></h1>
+      <p>Superfícies em <b>areia</b> (calmas, quentes, sem o branco hospitalar), texto em <b>ardósia</b> (cinza azulado, legível em qualquer tamanho) e a marca em <b>navy</b>. Para os dados, 8 cores de série em ordem fixa, validadas para quem tem daltonismo e com contraste de pelo menos 3:1 nos dois temas.</p>
+      <p>Uma regra só para todos os projetos: o CSS fala em papéis (<code>--cor-superficie</code>, <code>--serie-1</code>, <code>--status-critico</code>), nunca em hex.</p>
+      <div class="badges" id="badges"></div>
+    </div>
+    <div class="trio" aria-label="As três cores da marca">
+      <div class="c areia"><b>Areia</b><small>superfícies · #ECE5D9</small></div>
+      <div class="c navy"><b>Navy</b><small>marca · #10244C</small></div>
+      <div class="c ardosia"><b>Ardósia</b><small>texto · #495565</small></div>
+    </div>
+  </div>
+
+  <section id="rampas">
+    <h2>Rampas</h2>
+    <p class="lead">Onze passos cada, desenhados no espaço OKLCH: a luminosidade cai por igual de um passo ao outro, então o 500 de uma rampa pesa o mesmo que o 500 da outra. As rampas não mudam com o tema; o tema escolhe passos diferentes delas.</p>
+    <div class="card" id="ramps"></div>
+  </section>
+
+  <section id="tema">
+    <h2>Tema <span class="hint" id="tema-nome"></span></h2>
+    <p class="lead">Os papéis da interface no tema atual, com o contraste calculado aqui mesmo contra a superfície. Troque o tema no topo: os valores mudam, os nomes não.</p>
+    <div class="card"><table id="tokens"><thead><tr><th>Papel</th><th></th><th>Hex</th><th>Para quê</th><th class="n">Contraste</th><th class="n">Mínimo</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section id="dados">
+    <h2>Dados</h2>
+    <p class="lead">Cada cor de gráfico faz um trabalho só: <b>identidade</b> (categórica), <b>quantidade</b> (sequencial), <b>lado</b> de uma linha de base (divergente) ou <b>estado</b> (status). A categórica tem ordem fixa: a série 1 é sempre navy, a 2 sempre ocre.</p>
+    <div class="slots" id="slots"></div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card">
+        <h3>Custo por dia, por produto</h3><p class="hint">Barras empilhadas com 2px de respiro entre os segmentos; legenda sempre presente.</p>
+        <div class="legend" id="leg-stack"></div><svg id="stack" viewBox="0 0 520 220" width="100%" role="img" aria-label="Custo por dia, por produto, barras empilhadas"></svg>
+      </div>
+      <div class="card">
+        <h3>Destaque: uma série, o resto em contexto</h3><p class="hint">Quando a história é uma linha, ela leva a cor e as outras ficam em ardósia.</p>
+        <svg id="lines" viewBox="0 0 520 248" width="100%" role="img" aria-label="Linha em destaque contra as demais"></svg>
+      </div>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card">
+        <h3>Sequencial · navy</h3><p class="hint">Uma cor, do claro ao escuro. No tema escuro a âncora inverte: o pouco fica perto do fundo.</p>
+        <div class="strip" id="seq"></div><div class="scale"><span>pouco</span><span>muito</span></div>
+        <svg id="heat" viewBox="0 0 520 120" width="100%" style="margin-top:14px" role="img" aria-label="Mapa de calor de exemplo"></svg>
+      </div>
+      <div class="card">
+        <h3>Divergente · navy ← areia → terracota</h3><p class="hint">Duas cores opostas (fria e quente) e um meio neutro. Em custo: abaixo do previsto em navy, acima em terracota.</p>
+        <div class="strip" id="div"></div><div class="scale"><span>economia</span><span>no previsto</span><span>gasto a mais</span></div>
+        <svg id="divbars" viewBox="0 0 520 120" width="100%" style="margin-top:14px" role="img" aria-label="Variação contra o orçamento"></svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="status">
+    <h2>Status</h2>
+    <p class="lead">Quatro estados com significado reservado, sempre com ícone e rótulo, nunca só a cor. O preenchimento é para marcas e ícones; o <code>-texto</code> é a versão com contraste AA para letras.</p>
+    <div class="card">
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px" id="status-chips"></div>
+      <p style="margin:0">Variação de custo: <span class="delta bom">▼ −12,4%</span> contra o mês anterior (gastou menos: bom) · <span class="delta critico">▲ +8,1%</span> (gastou mais: crítico). Em custo, cair é bom.</p>
+    </div>
+  </section>
+
+  <section id="painel">
+    <h2>Painel executivo</h2>
+    <p class="lead">O número principal grande e sozinho; as projeções como barras de bala: o já gasto (cheio), o que falta até o fim do mês (claro), a faixa de cenários (traço) e o orçamento (marca vertical). Uma régua só para todas as linhas: dá para comparar de cima a baixo.</p>
+    <div class="kpis">
+      <div class="kpi destaque"><div class="l">Projeção da fatura de março</div><div class="val">US$ 1.240</div><div class="s">faixa de US$ 1.180 a US$ 1.310 · <span class="delta bom">▼ −3,4%</span> vs fevereiro</div></div>
+      <div class="kpi"><div class="l">Gasto até agora</div><div class="val">US$ 562</div><div class="s">14 de 31 dias</div></div>
+      <div class="kpi"><div class="l">Sem tag</div><div class="val">18%</div><div class="s">US$ 101 do uso</div></div>
+      <div class="kpi"><div class="l">Economia possível</div><div class="val">US$ 86</div><div class="s">por mês, 5 ações</div></div>
+    </div>
+    <div class="card">
+      <h3>Projeção do mês por produto</h3><p class="hint">Fechamento previsto de março; a confiança em três pontos (●●○), sem cor de alarme.</p>
+      <div class="legend"><span><i style="background:var(--serie-1)"></i>gasto até agora</span><span><i style="background:var(--dado-previsto)"></i>até o fim do mês</span><span><i style="height:2px;background:var(--dado-faixa)"></i>faixa de cenários</span><span><i style="width:2px;height:12px;background:var(--cor-tinta)"></i>orçamento</span></div>
+      <div id="projs"></div>
+    </div>
+  </section>
+
+  <section id="regras">
+    <h2>Regras</h2>
+    <div class="rules">
+      <div class="card do"><h3>Faça</h3><ul>
+        <li><b>Use os papéis</b>, não o hex: <code>var(--serie-1)</code>, <code>var(--cor-tinta-2)</code>.</li>
+        <li><b>Séries na ordem</b>: 1 navy, 2 ocre, 3 vinho, 4 céu, 5 oliva, 6 lavanda, 7 terracota, 8 petróleo. A cor acompanha a entidade: um filtro não repinta as que ficam.</li>
+        <li><b>Destaque</b> quando a história é uma série: ela em navy, as outras em <code>--serie-contexto</code>.</li>
+        <li><b>Texto em tinta</b> (tinta, tinta-2, tinta-3); a cor da série vai na marca ao lado (bolinha, traço), nunca na letra.</li>
+        <li><b>Status com ícone e rótulo</b> e a versão <code>-texto</code> para letras.</li>
+        <li><b>Dispersão e mapas</b>: até 3 séries (as 3 primeiras se distinguem todas contra todas); mais que isso, "outros" ou facetas.</li>
+      </ul></div>
+      <div class="card dont"><h3>Não faça</h3><ul>
+        <li><b>Uma 9ª cor</b> gerada: a partir da 9ª série, some em <code>--serie-outros</code>.</li>
+        <li><b>Status como série</b> (o "crítico" não é a série 4) nem série como status.</li>
+        <li><b>Arco-íris</b> para quantidade: sequencial é uma cor só, do claro ao escuro.</li>
+        <li><b>Dois eixos Y</b> no mesmo gráfico: dois gráficos, ou índice com base 100.</li>
+        <li><b>Grade tracejada</b> ou grossa: linhas finas e sólidas, um passo acima da superfície.</li>
+        <li><b>Inverter o tema na mão</b>: o escuro tem passos próprios, já validados.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <footer>
+    Areia · Navy · Ardósia v1.1.0 · Validação: contraste WCAG 2.x; daltonismo pela simulação de Machado, Oliveira e Fernandes (2009), distância em OKLab ×100 · <code>node scripts/verificar.mjs</code> confere tudo de novo.
+  </footer>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  const root = document.documentElement;
+  const css = (v) => getComputedStyle(root).getPropertyValue(v).trim();
+  const STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
+  const SERIES = ['Navy', 'Ocre', 'Vinho', 'Céu', 'Oliva', 'Lavanda', 'Terracota', 'Petróleo'];
+
+  // ---------- contraste WCAG ----------
+  function lin(c) { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+  function lum(hex) {
+    const h = hex.replace('#', ''), n = parseInt(h, 16);
+    return 0.2126 * lin((n >> 16) & 255) + 0.7152 * lin((n >> 8) & 255) + 0.0722 * lin(n & 255);
+  }
+  function contrast(a, b) { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+  const onColor = (hex) => (contrast(hex, '#ffffff') >= contrast(hex, '#101822') ? '#ffffff' : '#101822');
+  const fmt = (v) => v.toFixed(2).replace('.', ',');
+
+  // ---------- tema ----------
+  const buttons = document.querySelectorAll('.seg button');
+  function current() { return root.getAttribute('data-theme') || ''; }
+  function isDark() {
+    const t = current();
+    return t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function setTheme(t) {
+    if (t) root.setAttribute('data-theme', t); else root.removeAttribute('data-theme');
+    try { if (t) localStorage.setItem('anp-tema', t); else localStorage.removeItem('anp-tema'); } catch (e) {}
+    render();
+  }
+  buttons.forEach((b) => b.addEventListener('click', () => setTheme(b.dataset.t)));
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { if (!current()) render(); });
+
+  // ---------- rampas ----------
+  function ramps() {
+    const box = document.getElementById('ramps');
+    box.innerHTML = '';
+    [['areia', 'Areia'], ['ardosia', 'Ardósia'], ['navy', 'Navy']].forEach(([k, nome]) => {
+      const row = document.createElement('div');
+      row.className = 'ramp';
+      row.innerHTML = `<div class="nm">${nome}</div>` + STEPS.map((s) => {
+        const hex = css(`--${k}-${s}`);
+        return `<div class="sw" style="background:${hex};color:${onColor(hex)}"><b>${s}</b><span class="mono">${hex}</span></div>`;
+      }).join('');
+      box.appendChild(row);
+    });
+  }
+
+  // ---------- tokens ----------
+  const TOKENS = [
+    ['--cor-pagina', 'fundo da página', null],
+    ['--cor-superficie', 'cartões, tabelas, gráficos', null],
+    ['--cor-superficie-2', 'blocos dentro do cartão', null],
+    ['--cor-superficie-3', 'controles, faixas, linhas alternadas', null],
+    ['--cor-borda', 'bordas finas', null],
+    ['--cor-grade', 'linhas de grade', null],
+    ['--cor-eixo', 'eixos e linha de base', null],
+    ['--cor-tinta', 'texto principal, números', 7],
+    ['--cor-tinta-2', 'texto secundário, rótulos', 4.5],
+    ['--cor-tinta-3', 'texto apagado, notas', 4.5],
+    ['--cor-marca', 'logotipo, títulos de marca', 7],
+    ['--cor-link', 'links', 4.5],
+    ['--cor-acento', 'botão principal, item ativo', 3],
+    ['--cor-acento-hover', 'botão principal ao passar o mouse', 3],
+    ['--cor-acento-suave', 'fundo de item selecionado', null],
+    ['--cor-sobre-acento', 'texto sobre o acento (medido contra ele)', 4.5, '--cor-acento'],
+    ['--cor-foco', 'anel de foco', 3],
+    ['--cor-marca-fundo', 'a faixa da marca (cabeçalho)', null],
+    ['--cor-marca-controle', 'botões e controles na faixa', null],
+    ['--cor-marca-borda', 'bordas na faixa', null],
+    ['--cor-sobre-marca', 'texto na faixa (medido contra ela)', 7, '--cor-marca-fundo'],
+    ['--cor-sobre-marca-2', 'texto secundário e links na faixa (medido contra ela)', 4.5, '--cor-marca-fundo'],
+    ['--serie-contexto', 'séries fora do destaque', null],
+    ['--serie-outros', '"outros" (da 9ª série em diante)', null],
+    ['--dado-previsto', 'o que falta numa projeção', null],
+    ['--dado-faixa', 'faixa de cenários, marcas de referência', 3],
+  ];
+  function tokens() {
+    document.getElementById('tema-nome').textContent = isDark() ? '· escuro' : '· claro';
+    const surf = css('--cor-superficie');
+    document.querySelector('#tokens tbody').innerHTML = TOKENS.map(([v, uso, min, contra]) => {
+      const hex = css(v), c = contrast(hex, contra ? css(contra) : surf);
+      const m = String(min).replace('.', ',');
+      const st = min == null ? '<span style="color:var(--cor-tinta-3)">—</span>' : (c >= min ? `<span class="pass">✓ ${m}:1</span>` : `<span class="fail">✕ ${m}:1</span>`);
+      return `<tr><td><code>${v}</code></td><td><span class="chip" style="background:${hex}"></span></td><td class="mono">${hex}</td><td>${uso}</td><td class="n">${fmt(c)}:1</td><td class="n">${st}</td></tr>`;
+    }).join('');
+  }
+
+  // ---------- séries ----------
+  function slots() {
+    const surf = css('--cor-superficie');
+    document.getElementById('slots').innerHTML = SERIES.map((n, i) => {
+      const hex = css(`--serie-${i + 1}`);
+      return `<div class="slot"><div class="f" style="background:${hex}"></div><div class="t"><b>${i + 1} · ${n}</b><span class="mono">${hex}</span> · ${fmt(contrast(hex, surf))}:1</div></div>`;
+    }).join('');
+  }
+
+  // ---------- SVG ----------
+  const NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, parent) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  // barra com 4px arredondados só na ponta de cima
+  function barPath(x, y, w, h, r) {
+    r = Math.min(r, h, w / 2);
+    return `M${x},${y + h}V${y + r}Q${x},${y} ${x + r},${y}H${x + w - r}Q${x + w},${y} ${x + w},${y + r}V${y + h}Z`;
+  }
+  function axisY(svg, x0, x1, y0, y1, max, ticks, fmtv) {
+    for (let i = 0; i <= ticks; i++) {
+      const v = (max / ticks) * i, y = y1 - ((y1 - y0) * i) / ticks;
+      el('line', { x1: x0, x2: x1, y1: y, y2: y, stroke: i ? 'var(--cor-grade)' : 'var(--cor-eixo)', 'stroke-width': 1 }, svg);
+      const t = el('text', { x: x0 - 8, y: y + 4, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--cor-tinta-3)' }, svg);
+      t.textContent = fmtv(v);
+    }
+  }
+
+  function stack() {
+    const svg = document.getElementById('stack'); svg.innerHTML = '';
+    const days = 14, n = 5, names = SERIES.slice(0, n);
+    const data = Array.from({ length: days }, (_, d) => [3.0, 2.1 + 0.15 * Math.sin(d), 1.1 + 0.4 * (d > 9), 0.7 + 0.1 * Math.cos(d), 0.45]);
+    const x0 = 44, x1 = 510, y0 = 10, y1 = 196, max = 8, bw = 18;
+    axisY(svg, x0, x1, y0, y1, max, 4, (v) => 'US$ ' + v);
+    const step = (x1 - x0) / days;
+    data.forEach((row, d) => {
+      let acc = 0;
+      const x = x0 + step * d + (step - bw) / 2;
+      row.forEach((v, s) => {
+        const yb = y1 - ((acc) / max) * (y1 - y0), yt = y1 - ((acc + v) / max) * (y1 - y0);
+        const top = s === row.length - 1;
+        const h = yb - yt - (s ? 2 : 0); // 2px de respiro entre os segmentos
+        const p = top ? barPath(x, yt, bw, h, 4) : `M${x},${yt}h${bw}v${h}h${-bw}Z`;
+        el('path', { d: p, fill: `var(--serie-${s + 1})` }, svg);
+        acc += v;
+      });
+      if (d % 2 === 0) {
+        const t = el('text', { x: x + bw / 2, y: 214, 'text-anchor': 'middle', 'font-size': 10.5, fill: 'var(--cor-tinta-3)' }, svg);
+        t.textContent = String(d + 1).padStart(2, '0') + '/10';
+      }
+    });
+    document.getElementById('leg-stack').innerHTML = names.map((nm, i) => `<span><i style="background:var(--serie-${i + 1})"></i>${nm}</span>`).join('');
+  }
+
+  function lines() {
+    const svg = document.getElementById('lines'); svg.innerHTML = '';
+    const x0 = 44, x1 = 430, y0 = 12, y1 = 200, max = 60, pts = 12;
+    axisY(svg, x0, x1, y0, y1, max, 3, (v) => 'US$ ' + v);
+    const series = [
+      { v: [20, 22, 21, 24, 27, 26, 30, 33, 35, 40, 44, 48], hi: true, nm: 'Portal' },
+      { v: [30, 29, 31, 30, 29, 31, 30, 32, 31, 30, 31, 30] },
+      { v: [14, 15, 15, 16, 15, 17, 16, 16, 17, 18, 17, 18] },
+      { v: [8, 9, 8, 9, 10, 9, 10, 11, 10, 11, 12, 11] },
+    ];
+    const X = (i) => x0 + ((x1 - x0) * i) / (pts - 1), Y = (v) => y1 - ((y1 - y0) * v) / max;
+    series.slice().reverse().forEach((s) => {
+      const d = s.v.map((v, i) => `${i ? 'L' : 'M'}${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join('');
+      if (s.hi) el('path', { d: d + `L${X(pts - 1)},${y1}L${x0},${y1}Z`, fill: 'var(--serie-1)', opacity: 0.1 }, svg);
+      el('path', { d, fill: 'none', stroke: s.hi ? 'var(--serie-1)' : 'var(--serie-contexto)', 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+    });
+    const last = series[0].v[pts - 1];
+    el('circle', { cx: X(pts - 1), cy: Y(last), r: 4.5, fill: 'var(--serie-1)', stroke: 'var(--cor-superficie)', 'stroke-width': 2 }, svg);
+    const t = el('text', { x: X(pts - 1) + 10, y: Y(last) + 4, 'font-size': 12, fill: 'var(--cor-tinta)', 'font-weight': 600 }, svg);
+    t.textContent = 'US$ 48';
+    const t2 = el('text', { x: X(pts - 1) + 10, y: Y(last) + 19, 'font-size': 11, fill: 'var(--cor-tinta-3)' }, svg);
+    t2.textContent = 'Portal';
+    ['jan', 'mar', 'mai', 'jul', 'set', 'nov'].forEach((m, i) => {
+      const tt = el('text', { x: X(i * 2), y: 222, 'text-anchor': 'middle', 'font-size': 10.5, fill: 'var(--cor-tinta-3)' }, svg);
+      tt.textContent = m;
+    });
+  }
+
+  function strips() {
+    document.getElementById('seq').innerHTML = Array.from({ length: 9 }, (_, i) => `<i style="background:var(--seq-${i + 1})"></i>`).join('');
+    document.getElementById('div').innerHTML = ['n4', 'n3', 'n2', 'n1', '0', 'p1', 'p2', 'p3', 'p4'].map((k) => `<i style="background:var(--div-${k})"></i>`).join('');
+    const heat = document.getElementById('heat'); heat.innerHTML = '';
+    const rows = 4, cols = 24;
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const v = Math.round(1 + 8 * Math.max(0, Math.min(1, 0.15 + 0.55 * Math.sin((c / cols) * Math.PI) * (0.6 + 0.4 * ((r + 1) / rows)) + 0.08 * Math.cos(c * 1.7 + r))));
+      el('rect', { x: c * 21.5, y: r * 29, width: 19.5, height: 27, rx: 4, fill: `var(--seq-${Math.min(9, v)})` }, heat);
+    }
+    const db = document.getElementById('divbars'); db.innerHTML = '';
+    const vals = [-38, -22, -9, -3, 2, 6, 14, 27, 41], mid = 260;
+    el('line', { x1: mid, x2: mid, y1: 0, y2: 120, stroke: 'var(--cor-eixo)', 'stroke-width': 1 }, db);
+    const keys = { '-4': 'n4', '-3': 'n3', '-2': 'n2', '-1': 'n1', '1': 'p1', '2': 'p2', '3': 'p3', '4': 'p4' };
+    vals.forEach((v, i) => {
+      const w = Math.abs(v) * 5.2, x = v < 0 ? mid - w : mid, k = Math.sign(v) * Math.min(4, Math.ceil(Math.abs(v) / 11));
+      el('rect', { x, y: i * 13 + 2, width: Math.max(w, 2), height: 10, rx: 3, fill: `var(--div-${keys[k]})` }, db);
+    });
+  }
+
+  function status() {
+    const S = [['bom', '✓', 'No orçamento'], ['atencao', '!', 'Perto do limite'], ['alerta', '▲', 'Acima do previsto'], ['critico', '✕', 'Estourou']];
+    document.getElementById('status-chips').innerHTML = S.map(([k, ic, lb]) =>
+      `<span class="st"><span class="ic" style="background:var(--status-${k});color:var(--status-${k}-sobre)">${ic}</span><span style="color:var(--status-${k}-texto)">${lb}</span></span>`).join('');
+  }
+
+  // a barra de bala da projeção: já gasto, até o fim do mês, faixa, orçamento; uma régua para todas
+  function projs() {
+    const P = [
+      { nm: 'Portal', sub: '5 recursos', a: 42.5, f: 92, lo: 90, hi: 95, b: 100, c: 3 },
+      { nm: 'Pagamentos', sub: '3 recursos', a: 31.2, f: 68, lo: 65, hi: 71, b: 60, c: 2 },
+      { nm: 'Relatórios', sub: 'desde 10/03', a: 3.4, f: 24, lo: 19, hi: 31, b: null, c: 1 },
+      { nm: 'Integrações', sub: '2 recursos', a: 3.1, f: 9.2, lo: 7, hi: 10.5, b: 12, c: 1 },
+    ];
+    const max = 110, X = (v) => `${((100 * v) / max).toFixed(2)}%`;
+    const brl = (v) => String(v).replace('.', ',');
+    const box = document.getElementById('projs'); box.innerHTML = '';
+    P.forEach((p) => {
+      const row = document.createElement('div');
+      row.className = 'proj';
+      const over = p.b != null && p.f > p.b;
+      row.innerHTML = `<div class="nm"><b>${p.nm}</b><span>${p.sub}</span></div>` +
+        `<div class="bar"><div class="bala" role="img" aria-label="${p.nm}: gasto até agora US$ ${brl(p.a)}, fechamento previsto US$ ${brl(p.f)}, cenários de US$ ${brl(p.lo)} a US$ ${brl(p.hi)}${p.b != null ? `, orçamento US$ ${brl(p.b)}` : ''}">` +
+        `<i class="trilha"></i><i class="prev" style="left:calc(${X(p.a)} + 2px);width:calc(${X(p.f - p.a)} - 2px)"></i>` +
+        `<i class="gasto" style="width:${X(p.a)}"></i><i class="faixa" style="left:${X(p.lo)};width:${X(p.hi - p.lo)}"></i>` +
+        (p.b != null ? `<i class="orc" style="left:${X(p.b)}"></i>` : '') + `</div></div>` +
+        `<div class="num"><b>≈ US$ ${brl(p.f)}</b><span>até agora US$ ${brl(p.a)}</span></div>` +
+        `<div class="cf"><span class="conf">${[1, 2, 3].map((i) => `<i class="${i <= p.c ? 'on' : ''}"></i>`).join('')}</span>confiança ${['', 'baixa', 'média', 'alta'][p.c]}` +
+        (over ? `<div class="over">▲ acima do orçamento</div>` : '') + `</div>`;
+      box.appendChild(row);
+    });
+  }
+
+  function badges() {
+    document.getElementById('badges').innerHTML = [
+      '8 séries · daltonismo ≥ 11 ΔE', 'todas ≥ 3:1 nos dois temas', 'texto AA (≥ 4,5:1)', 'claro e escuro com passos próprios',
+    ].map((t) => `<span class="badge"><span class="ok">✓</span>${t}</span>`).join('');
+  }
+
+  function render() {
+    buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.t === current())));
+    ramps(); tokens(); slots(); stack(); lines(); strips(); status(); projs(); badges();
+  }
+  render();
+})();
+</script>
+</body>
+</html>

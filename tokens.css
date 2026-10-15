@@ -1,0 +1,258 @@
+/*!
+ * Areia · Navy · Ardósia — paleta de cores v1.1.0
+ * A regra de cores dos projetos: superfícies em areia, texto em ardósia, marca
+ * em navy; 8 cores de série validadas para daltonismo e contraste nos dois temas.
+ * Documentação: README.md · Vitrine: index.html · Conferência: scripts/verificar.mjs
+ *
+ * Gerado de tokens.json por scripts/gerar-css.mjs: não edite à mão.
+ *
+ * Uso: <link rel="stylesheet" href="tokens.css"> e, no <html>, data-theme="light"
+ * ou "dark" (sem o atributo, segue o tema do sistema). Escreva o CSS contra os
+ * papéis (--cor-*, --serie-*, --status-*), nunca contra o hex.
+ */
+
+/* rampas (iguais nos dois temas): 50 = mais claro, 950 = mais escuro */
+:root {
+  --areia-50: #fcfaf6; --areia-100: #f6f2ea; --areia-200: #ece5d9; --areia-300: #ddd4c3; --areia-400: #bfb39e; --areia-500: #9b8f7a;
+  --areia-600: #796f5d; --areia-700: #5b5344; --areia-800: #413b31; --areia-900: #2a261f; --areia-950: #191713;
+  --ardosia-50: #f8fafd; --ardosia-100: #eff3f7; --ardosia-200: #e1e7ee; --ardosia-300: #ced6e0; --ardosia-400: #aab5c4; --ardosia-500: #8592a3;
+  --ardosia-600: #647183; --ardosia-700: #495565; --ardosia-800: #323d4b; --ardosia-900: #1e2733; --ardosia-950: #101822;
+  --navy-50: #f0f5ff; --navy-100: #dde9ff; --navy-200: #bdd4fc; --navy-300: #95b6f3; --navy-400: #6792e3; --navy-500: #406fca;
+  --navy-600: #2c56a8; --navy-700: #204286; --navy-800: #173268; --navy-900: #10244c; --navy-950: #0a1834;
+  --fonte: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fonte-numeros: tabular-nums; /* só em colunas de números e eixos */
+}
+
+/* tema claro (padrão) */
+:root, :root[data-theme="light"] {
+  color-scheme: light;
+  /* superfícies */
+  --cor-pagina: #f1ece1;
+  --cor-superficie: #fffdf9;
+  --cor-superficie-2: #fcfaf6;
+  --cor-superficie-3: #f6f2ea;
+  --cor-borda: #ece5d9;
+  --cor-grade: #ece5d9;
+  --cor-eixo: #ddd4c3;
+  /* texto: tinta (principal), tinta-2 (secundário), tinta-3 (apagado, ainda AA) */
+  --cor-tinta: #101822;
+  --cor-tinta-2: #495565;
+  --cor-tinta-3: #5d6a7c;
+  /* marca e interação */
+  --cor-marca: #10244c;
+  --cor-acento: #204286;
+  --cor-acento-hover: #173268;
+  --cor-acento-suave: #f0f5ff;
+  --cor-sobre-acento: #ffffff;
+  --cor-link: #2c56a8;
+  --cor-foco: #406fca;
+  /* a faixa da marca (o cabeçalho do app): fundo navy, controles e bordas nela, texto areia e navy claro */
+  --cor-marca-fundo: #10244c;
+  --cor-marca-controle: #173268;
+  --cor-marca-borda: #2c56a8;
+  --cor-sobre-marca: #fcfaf6;
+  --cor-sobre-marca-2: #bdd4fc;
+  /* dados — categórica: ordem fixa, nunca reciclada; 9ª série em diante vai para "outros" */
+  --serie-1: #305eb7; /* Navy */
+  --serie-2: #bb7e00; /* Ocre */
+  --serie-3: #a4345c; /* Vinho */
+  --serie-4: #2f91bd; /* Céu */
+  --serie-5: #698e2f; /* Oliva */
+  --serie-6: #8765be; /* Lavanda */
+  --serie-7: #c45034; /* Terracota */
+  --serie-8: #029393; /* Petróleo */
+  --serie-contexto: #ced6e0; /* o resto, quando uma série é o destaque */
+  --serie-outros: #bfb39e; /* a soma das séries que não cabem nas 8 */
+  --dado-previsto: #bdd4fc; /* o que falta até o fim do período numa projeção (o já realizado vai na cor da série) */
+  --dado-faixa: #495565; /* a faixa de cenários (mínimo a máximo) e as marcas de referência */
+  /* dados — sequencial (navy): seq-1 = pouco, seq-9 = muito */
+  --seq-1: #dde9ff;
+  --seq-2: #bdd4fc;
+  --seq-3: #95b6f3;
+  --seq-4: #6792e3;
+  --seq-5: #406fca;
+  --seq-6: #2c56a8;
+  --seq-7: #204286;
+  --seq-8: #173268;
+  --seq-9: #10244c;
+  /* dados — divergente: navy (abaixo, economia) ← neutro → terracota (acima, gasto a mais) */
+  --div-n4: #234993;
+  --div-n3: #426ec2;
+  --div-n2: #7398dc;
+  --div-n1: #acc2e9;
+  --div-0: #ece5d9;
+  --div-p1: #e2baad;
+  --div-p2: #db8e76;
+  --div-p3: #cb6443;
+  --div-p4: #a33f1e;
+  /* status: só com ícone + rótulo; o preenchimento é para marcas, o -texto para letras (AA),
+     o -sobre para o ícone desenhado em cima do preenchimento */
+  --status-bom: #099864;
+  --status-bom-texto: #016c46;
+  --status-bom-sobre: #101822;
+  --status-atencao: #ecaa0b;
+  --status-atencao-texto: #8a5601;
+  --status-atencao-sobre: #101822;
+  --status-alerta: #e97125;
+  --status-alerta-texto: #ac430e;
+  --status-alerta-sobre: #101822;
+  --status-critico: #d21d4e;
+  --status-critico-texto: #b61441;
+  --status-critico-sobre: #ffffff;
+}
+
+/* tema escuro: pelo sistema (sem data-theme) ou escolhido (data-theme="dark") */
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    /* superfícies */
+    --cor-pagina: #080f18;
+    --cor-superficie: #101723;
+    --cor-superficie-2: #161e2a;
+    --cor-superficie-3: #1e2734;
+    --cor-borda: #242e3d;
+    --cor-grade: #1e2734;
+    --cor-eixo: #333e4d;
+    /* texto: tinta (principal), tinta-2 (secundário), tinta-3 (apagado, ainda AA) */
+    --cor-tinta: #fcfaf6;
+    --cor-tinta-2: #ced6e0;
+    --cor-tinta-3: #aab5c4;
+    /* marca e interação */
+    --cor-marca: #bdd4fc;
+    --cor-acento: #406fca;
+    --cor-acento-hover: #2c56a8;
+    --cor-acento-suave: #162644;
+    --cor-sobre-acento: #ffffff;
+    --cor-link: #95b6f3;
+    --cor-foco: #6792e3;
+    /* a faixa da marca (o cabeçalho do app): fundo navy, controles e bordas nela, texto areia e navy claro */
+    --cor-marca-fundo: #10244c;
+    --cor-marca-controle: #173268;
+    --cor-marca-borda: #2c56a8;
+    --cor-sobre-marca: #fcfaf6;
+    --cor-sobre-marca-2: #bdd4fc;
+    /* dados — categórica: ordem fixa, nunca reciclada; 9ª série em diante vai para "outros" */
+    --serie-1: #5889e6; /* Navy */
+    --serie-2: #c28412; /* Ocre */
+    --serie-3: #c65379; /* Vinho */
+    --serie-4: #268bb6; /* Céu */
+    --serie-5: #6f9436; /* Oliva */
+    --serie-6: #9977d1; /* Lavanda */
+    --serie-7: #d25d40; /* Terracota */
+    --serie-8: #0c9999; /* Petróleo */
+    --serie-contexto: #495565; /* o resto, quando uma série é o destaque */
+    --serie-outros: #647183; /* a soma das séries que não cabem nas 8 */
+    --dado-previsto: #204286; /* o que falta até o fim do período numa projeção (o já realizado vai na cor da série) */
+    --dado-faixa: #ced6e0; /* a faixa de cenários (mínimo a máximo) e as marcas de referência */
+    /* dados — sequencial (navy): seq-1 = pouco, seq-9 = muito */
+    --seq-1: #10244c;
+    --seq-2: #173268;
+    --seq-3: #204286;
+    --seq-4: #2c56a8;
+    --seq-5: #406fca;
+    --seq-6: #6792e3;
+    --seq-7: #95b6f3;
+    --seq-8: #bdd4fc;
+    --seq-9: #dde9ff;
+    /* dados — divergente: navy (abaixo, economia) ← neutro → terracota (acima, gasto a mais) */
+    --div-n4: #a2bef2;
+    --div-n3: #6f97e2;
+    --div-n2: #4972c0;
+    --div-n1: #2e4b83;
+    --div-0: #2a2e34;
+    --div-p1: #763927;
+    --div-p2: #af5234;
+    --div-p3: #d9704f;
+    --div-p4: #eaa48e;
+    /* status: só com ícone + rótulo; o preenchimento é para marcas, o -texto para letras (AA),
+       o -sobre para o ícone desenhado em cima do preenchimento */
+    --status-bom: #08ad72;
+    --status-bom-texto: #4fcc92;
+    --status-bom-sobre: #101822;
+    --status-atencao: #f0b135;
+    --status-atencao-texto: #f5c25f;
+    --status-atencao-sobre: #101822;
+    --status-alerta: #f3813f;
+    --status-alerta-texto: #fa9d68;
+    --status-alerta-sobre: #101822;
+    --status-critico: #ef546e;
+    --status-critico-texto: #fd8996;
+    --status-critico-sobre: #101822;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  /* superfícies */
+  --cor-pagina: #080f18;
+  --cor-superficie: #101723;
+  --cor-superficie-2: #161e2a;
+  --cor-superficie-3: #1e2734;
+  --cor-borda: #242e3d;
+  --cor-grade: #1e2734;
+  --cor-eixo: #333e4d;
+  /* texto: tinta (principal), tinta-2 (secundário), tinta-3 (apagado, ainda AA) */
+  --cor-tinta: #fcfaf6;
+  --cor-tinta-2: #ced6e0;
+  --cor-tinta-3: #aab5c4;
+  /* marca e interação */
+  --cor-marca: #bdd4fc;
+  --cor-acento: #406fca;
+  --cor-acento-hover: #2c56a8;
+  --cor-acento-suave: #162644;
+  --cor-sobre-acento: #ffffff;
+  --cor-link: #95b6f3;
+  --cor-foco: #6792e3;
+  /* a faixa da marca (o cabeçalho do app): fundo navy, controles e bordas nela, texto areia e navy claro */
+  --cor-marca-fundo: #10244c;
+  --cor-marca-controle: #173268;
+  --cor-marca-borda: #2c56a8;
+  --cor-sobre-marca: #fcfaf6;
+  --cor-sobre-marca-2: #bdd4fc;
+  /* dados — categórica: ordem fixa, nunca reciclada; 9ª série em diante vai para "outros" */
+  --serie-1: #5889e6; /* Navy */
+  --serie-2: #c28412; /* Ocre */
+  --serie-3: #c65379; /* Vinho */
+  --serie-4: #268bb6; /* Céu */
+  --serie-5: #6f9436; /* Oliva */
+  --serie-6: #9977d1; /* Lavanda */
+  --serie-7: #d25d40; /* Terracota */
+  --serie-8: #0c9999; /* Petróleo */
+  --serie-contexto: #495565; /* o resto, quando uma série é o destaque */
+  --serie-outros: #647183; /* a soma das séries que não cabem nas 8 */
+  --dado-previsto: #204286; /* o que falta até o fim do período numa projeção (o já realizado vai na cor da série) */
+  --dado-faixa: #ced6e0; /* a faixa de cenários (mínimo a máximo) e as marcas de referência */
+  /* dados — sequencial (navy): seq-1 = pouco, seq-9 = muito */
+  --seq-1: #10244c;
+  --seq-2: #173268;
+  --seq-3: #204286;
+  --seq-4: #2c56a8;
+  --seq-5: #406fca;
+  --seq-6: #6792e3;
+  --seq-7: #95b6f3;
+  --seq-8: #bdd4fc;
+  --seq-9: #dde9ff;
+  /* dados — divergente: navy (abaixo, economia) ← neutro → terracota (acima, gasto a mais) */
+  --div-n4: #a2bef2;
+  --div-n3: #6f97e2;
+  --div-n2: #4972c0;
+  --div-n1: #2e4b83;
+  --div-0: #2a2e34;
+  --div-p1: #763927;
+  --div-p2: #af5234;
+  --div-p3: #d9704f;
+  --div-p4: #eaa48e;
+  /* status: só com ícone + rótulo; o preenchimento é para marcas, o -texto para letras (AA),
+     o -sobre para o ícone desenhado em cima do preenchimento */
+  --status-bom: #08ad72;
+  --status-bom-texto: #4fcc92;
+  --status-bom-sobre: #101822;
+  --status-atencao: #f0b135;
+  --status-atencao-texto: #f5c25f;
+  --status-atencao-sobre: #101822;
+  --status-alerta: #f3813f;
+  --status-alerta-texto: #fa9d68;
+  --status-alerta-sobre: #101822;
+  --status-critico: #ef546e;
+  --status-critico-texto: #fd8996;
+  --status-critico-sobre: #101822;
+}
