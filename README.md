@@ -1,5 +1,7 @@
 # Areia · Navy · Ardósia
 
+<p align="center"><img src="imagens/capa.svg" alt="Areia · Navy · Ardósia: a faixa navy com o nome, as 8 cores de série e as três cores da marca" width="100%"></p>
+
 A regra de cores dos nossos projetos, com tema claro e escuro, feita para painéis executivos: telas
 em que alguém precisa ler um número, entender se ele está bom ou ruim e decidir, em poucos segundos.
 
@@ -14,6 +16,16 @@ As cores dos dados (8 séries, sequencial, divergente e status) foram escolhidas
 olho: contraste WCAG contra a superfície e distância de cor simulando daltonismo, nos dois temas.
 `node scripts/verificar.mjs` refaz todas as contas.
 
+## Como fica
+
+Um painel executivo de exemplo, com dados fictícios, nos dois temas. Ele mostra a faixa da marca, a aba
+ativa, um número herói, as projeções em barra de bala numa régua comum e um gráfico empilhado com legenda.
+
+<p align="center"><img src="imagens/painel-claro.svg" alt="Painel de exemplo no tema claro: cabeçalho navy, abas, quatro números, projeção por produto em barras e custo por dia em barras empilhadas" width="100%"></p>
+<p align="center"><img src="imagens/painel-escuro.svg" alt="O mesmo painel no tema escuro" width="100%"></p>
+
+Para ver tudo funcionando, com a troca de tema e o contraste calculado na hora, abra o `index.html` no navegador.
+
 ## Arquivos
 
 | Arquivo | O que é |
@@ -23,6 +35,9 @@ olho: contraste WCAG contra a superfície e distância de cor simulando daltonis
 | `index.html` | A vitrine: abra no navegador e troque entre Claro, Escuro e Sistema. Mostra rampas, papéis com o contraste calculado na hora, gráficos de exemplo e um painel executivo. |
 | `scripts/gerar-css.mjs` | Gera o `tokens.css` a partir do `tokens.json` (`--conferir` só confere, para CI). |
 | `scripts/verificar.mjs` | Confere contraste, daltonismo e as escalas. Sai com erro se algo não passar. |
+| `scripts/gerar-imagens.mjs` | Gera as imagens deste README (`imagens/*.svg`) a partir do `tokens.json`. |
+| `imagens/` | A capa, as rampas, as séries, as escalas, o status e o painel de exemplo, em SVG. |
+| `LICENSE` | MIT. |
 
 Os scripts precisam só do Node 18 ou mais novo, sem dependências.
 
@@ -59,6 +74,8 @@ nunca em hex nem em passo de rampa. É isso que deixa o tema escuro de graça e 
 Onze passos cada, desenhados no espaço OKLCH: a luminosidade cai por igual de um passo ao outro,
 então o 500 de uma rampa pesa o mesmo que o 500 da outra. As rampas são iguais nos dois temas; cada
 tema escolhe passos diferentes delas.
+
+<p align="center"><img src="imagens/rampas.svg" alt="As rampas areia, ardósia e navy, do passo 50 ao 950, com o hex de cada passo" width="100%"></p>
 
 | Passo | Areia | Ardósia | Navy |
 |---|---|---|---|
@@ -136,6 +153,8 @@ Cada cor de gráfico faz **um trabalho só**. Antes de escolher a cor, pergunte 
 
 ### Séries (categórica)
 
+<p align="center"><img src="imagens/series.svg" alt="As 8 cores de série nos temas claro e escuro, com o contraste de cada uma e um gráfico de barras empilhadas de exemplo" width="100%"></p>
+
 | # | Cor | Claro | Contraste | Escuro | Contraste |
 |---|---|---|---|---|---|
 | 1 | Navy | `#305eb7` | 6,06:1 | `#5889e6` | 5,25:1 |
@@ -170,6 +189,8 @@ Cada cor de gráfico faz **um trabalho só**. Antes de escolher a cor, pergunte 
 - **Divergente** tem duas cores opostas e um meio neutro: navy (abaixo da referência: economia) ←
   areia → terracota (acima: gasto a mais). O meio é sempre neutro, nunca uma cor.
 
+<p align="center"><img src="imagens/escalas.svg" alt="A escala sequencial navy com um mapa de calor e a escala divergente com barras para os dois lados, nos temas claro e escuro" width="100%"></p>
+
 | | n4 | n3 | n2 | n1 | 0 | p1 | p2 | p3 | p4 |
 |---|---|---|---|---|---|---|---|---|---|
 | Claro | `#234993` | `#426ec2` | `#7398dc` | `#acc2e9` | `#ece5d9` | `#e2baad` | `#db8e76` | `#cb6443` | `#a33f1e` |
@@ -179,6 +200,8 @@ Cada cor de gráfico faz **um trabalho só**. Antes de escolher a cor, pergunte 
 
 Quatro estados com significado reservado. **Sempre com ícone e rótulo**, nunca só a cor, e nunca
 usados como cor de série (o "crítico" não é a série 4).
+
+<p align="center"><img src="imagens/status.svg" alt="Os quatro estados com ícone e rótulo nos temas claro e escuro, e a variação de custo com seta" width="100%"></p>
 
 | Estado | Ícone | Claro: marca / texto | Escuro: marca / texto |
 |---|---|---|---|
@@ -206,7 +229,7 @@ Para "quanto vai fechar o mês", use uma **barra de bala** numa régua comum a t
 - ao lado, o número grande (≈ US$ 95), o realizado pequeno embaixo e a confiança em três pontos
   (●●○) neutros. A cor de alarme fica só para quando passar do orçamento, com ▲ e o texto.
 
-A vitrine (`index.html`, seção Painel) tem o exemplo pronto.
+O painel de exemplo, em [Como fica](#como-fica), mostra a barra pronta. A vitrine (`index.html`, seção Painel) tem a versão interativa.
 
 ## Acessibilidade e validação
 
@@ -269,11 +292,17 @@ gráfica de jornais econômicos (Financial Times, The Economist) resolvem a mesm
 2. `node scripts/gerar-css.mjs` para gerar o `tokens.css`.
 3. `node scripts/verificar.mjs`: se algo não passar, ajuste o passo (mais claro ou mais escuro na
    mesma rampa) até passar.
-4. Abra o `index.html` nos dois temas e olhe: o script confere a cor, não o desenho.
-5. Suba a versão (`versao` no JSON) e anote a mudança abaixo.
+4. `node scripts/gerar-imagens.mjs` para refazer as imagens do README.
+5. Abra o `index.html` nos dois temas e olhe: o script confere a cor, não o desenho.
+6. Suba a versão (`versao` no JSON) e anote a mudança abaixo.
 
 ## Versões
 
+- **1.1.1:** as imagens do README (`imagens/`, geradas por `scripts/gerar-imagens.mjs`) e a licença MIT. As cores não mudaram.
 - **1.1.0:** a faixa da marca (`--cor-marca-fundo`, `-controle`, `-borda`, `--cor-sobre-marca`, `-2`) e a página do
   tema claro um passo mais areia (`#f1ece1`), para a identidade aparecer além dos gráficos.
 - **1.0.0:** rampas, papéis dos dois temas, 8 séries, sequencial, divergente, status e projeção.
+
+## Licença
+
+[MIT](LICENSE): use, copie e adapte à vontade, mantendo o aviso de copyright.
